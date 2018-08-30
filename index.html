@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav><div class="space" id="top"></div></nav>
+            <h1>TITLE GOES HERE</h1>
+        </header>
+        <main>
+            <div class="space" id="main"></div>
+            <div class="form">
+                <h2>SUBTITLE GOES HERE</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <form method="POST" action="insert.php">
+                    <input type="text" id="fname" placeholder="First name" name="firstname">
+                    <input type="text" id="lname" placeholder="Last name" name="lastname">
+                    <input type="email" id="email" placeholder="Email address" name="email">
+                    <input type="submit" value="Sign up" class="signup">
+                </form>
+                <p id="result"></p>
+                <div class="link">
+                    <a href="#">Terms and conditions</a>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+    <script>
+            $("form").submit(function(e) {
+                e.preventDefault();
+
+                $.post(
+                    $("form").attr('action'),
+                    $("form :input").serializeArray()
+                    ,
+                    function(result) {
+                        if(result == "success"){
+                            $("#result").html("values entered successfully");
+                        }
+                        else {
+                            $("#result").html("some error has occured");
+                        }
+                    }
+                )
+            });
+    </script>
+</body>
+</html>
